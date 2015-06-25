@@ -1,0 +1,43 @@
+Crouching Process Hidden File (cphf)
+https://github.com/x5Fhayling/cphf
+Spilling the details on unlinked files and the processes accessing them
+
+usage: cphf [--file no|acdgimMnpsu] [--proc no|cdDegGiMnPqrsSTuUv!]
+NOTE: running cphf under different privileges will likely return different results
+
+--file	f	Suppresses files from being listed or specifies which
+	   	attributes should be listed.  Options are:
+		no 	Supress all file information
+		a	Last time file was accessed
+		c	Last time status was changed
+		d	Device file resides on
+		g	Group ID
+		i	INode
+		m	Last modification time
+		M	File Mode
+		n	File Name
+		p	Permissions
+		s	Size (bytes)
+		u	User ID
+
+--proc 	p	Supresses processes from being listed or specifies which
+		attributes should be listed.  Options are:
+                no      Supress all process information
+		c	Command with options
+		d	Device ID
+		D	Process Data Region Memory Address range
+		e	Process start time
+		g	Group ID
+		G	Group Name
+		i	Instruction Pointer
+		M	Permissions
+		n	Process Group ID
+		P	Parent Process ID
+		q	CPU Time
+		r	Resident Set (pages)
+		s	State of the process
+		S	Process Stack Memory Address range
+		T	Process Text Region Memory Address range
+		u	User ID
+		U	Login name
+		v	Virtual Memory (bytes)
