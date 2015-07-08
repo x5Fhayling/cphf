@@ -1,0 +1,9 @@
+25 June 2015 	Welcome to the first alpha release of cphf! Right now output 
+		options are limited to "report mode" however more digestible 
+		output is on the docket.  Additionally right now cphf calls 
+		out to lsof to find unlinked files. This will change in 
+		future releases.  Up next is an overhaul of how attributes
+		are being stored and handled. Also I want to go through all
+		of the primitives and make sure no overflows are possible.
+		If you find any bugs or have any suggestions please drop a line
+		at github repository: https://github.com/x5Fhayling/cphf  

@@ -1,0 +1,101 @@
+Crouching Process Hidden File (cphf)
+https://github.com/x5Fhayling/cphf
+Spilling the details on unlinked files and the processes accessing them
+
+When a file is deleted it usually isn't erased. Rather, it's more like its entry
+in the directory is deleted (unlinked). What can happen though is even if that
+entry is deleted the file could still be in use by a process or program and the
+space the file is using won't be freed for reuse until that program is done with
+it. While this is a legit technique for making sure temp files get deleted once a
+program ends, it is also used by malware and malicious hackers.
+
+cphf goes through and finds those unlinked but still in use files on a linux
+system and spills the deets on the files and the processes accessing them. :D
+
+
+Usage: cphf [--file no|acdgimMnpsu] [--proc no|cdDegGiMnPqrsSTuUv!]
+NOTE: running cphf under different privileges will likely return different results
+
+--file	f	Suppresses files from being listed or specifies which
+	   	attributes should be listed.  Options are:
+		no 	Supress all file information
+		a	Last time file was accessed
+		c	Last time status was changed
+		d	Device file resides on
+		g	Group ID
+		i	INode
+		m	Last modification time
+		M	File Mode
+		n	File Name
+		p	Permissions
+		s	Size (bytes)
+		u	User ID
+
+--proc 	p	Supresses processes from being listed or specifies which
+		attributes should be listed.  Options are:
+                no      Supress all process information
+		c	Command with options
+		d	Device ID
+		D	Process Data Region Memory Address range
+		e	Process start time
+		g	Group ID
+		G	Group Name
+		i	Instruction Pointer
+		M	Permissions
+		n	Process Group ID
+		P	Parent Process ID
+		q	CPU Time
+		r	Resident Set (pages)
+		s	State of the process
+		S	Process Stack Memory Address range
+		T	Process Text Region Memory Address range
+		u	User ID
+		U	Login name
+		v	Virtual Memory (bytes)
+
+
+Sample Output:
+
+Command                  /tmp/tcpdump -i eth0 -w /tmp/capture 
+Process ID (PID)         2320
+Device                   8,1	?
+Process Group ID (PGID)  2319
+Parent PID               2319
+User Name                root
+User ID (UID)            0
+User Group Name          root
+User Group ID (UGID)     0
+Current State            S (Sleeping in an interruptible wait)
+Permissions              -rwxr-xr-x
+Start Time               Thu Jun 25, 2015 12:35:47 PDT
+CPU Time                 0:00:00
+Virtual Memory (bytes)   19615744
+Resident Set (pages)     1411
+Text Region              0x7f90fc075000  -  0x7f90fc14e9f4
+Data Region              0x7f90fc36e480  -  0x7f90fdb49000
+Stack                    0x7ffe0bcd7aa0  -  0x7ffe0bcd6698
+Instruction Pointer      0x7f90fb55f110
+
+	Filename                   /tmp/capture (deleted)
+	Device                     8,1	?
+	Inode                      777
+	User ID (UID)              0
+	User Group ID (UGID)       0
+	File Mode                  Regular File
+	Permissions                -rw-r--r--
+	Last Accessed              Thu Jun 25, 2015 12:35:48 PDT
+	Last Modified              Thu Jun 25, 2015 12:37:09 PDT
+	Last Status Change         Thu Jun 25, 2015 12:37:09 PDT
+	File Size (bytes)          69632
+
+	Filename                   /tmp/tcpdump (deleted)
+	Device                     8,1	?
+	Inode                      347
+	User ID (UID)              0
+	User Group ID (UGID)       0
+	File Mode                  Regular File
+	Permissions                -rwxr-xr-x
+	Last Accessed              Thu Jun 25, 2015 12:35:48 PDT
+	Last Modified              Thu Jun 25, 2015 12:35:39 PDT
+	Last Status Change         Thu Jun 25, 2015 12:36:50 PDT
+	File Size (bytes)          1023160
